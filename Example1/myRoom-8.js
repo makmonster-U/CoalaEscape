@@ -17,7 +17,7 @@ room.door.onClick = function() { // door를 클릭했을 때
 }
 
 room.door.onOpen = function() { // door 상태가 open으로 변경되면 실행
-	room.door.setSprite("문-오른쪽-열림.png") // 열린 문으로 변경
+	room.door.setSprite("문-오른쪽-닫힘.png") // 열린 문으로 변경
 }
 
 room.keypad = room.createObject("keypad", "숫자키-우.png") // 오브젝트 생성
@@ -96,7 +96,7 @@ room2.cupboard.onClick = function() { // 클릭했을 때
 		room2.cupboard.close() // close
 	} else if(room2.cupboard.isClosed()) { //Closed 상태인 경우
 		room2.cupboard.open() // open
-	} else { 
+	} else {
 		// do nothing
 	}
 }
