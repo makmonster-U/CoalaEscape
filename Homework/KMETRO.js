@@ -3,20 +3,61 @@
 //-----방생성-----/
 
 room1 = game.createRoom("room1", "subway1.jpg") // 방 생성
-room1_door = game.createRoom("room1_door","지하철문1.png" ) // 첫방문확대
-room2 = game.createRoom("room2", "123.jpg") // 방 생성
 
 //room1
 
-room1.setRoomLight(0.8)
+room1.setRoomLight(0.7)
 
-room1.hint1 = room1.createObject("hint1","핏자국.png")
+room1.hint1 = room1.createObject("hint1","핏자국투.png")
 room1.locateObject(room1.hint1, 640,600)
 room1.hint1.setWidth(120)
+//room1.hint1.setSprite("핏자국투.png")
 
 room1.victim = room1.createObject("victim","쓰러진사람.png")
-room1.locateObject(room1.victim, 820,680)
-//-
+room1.locateObject(room1.victim, 760,730)
+room1.victim.setWidth(600)
+
+room1.blood1 = room1.createObject("blood1","핏자국2.png")
+room1.locateObject(room1.blood1, 700,330)
+room1.blood1.setWidth(50)
+
+room1.blood2 = room1.createObject("blood2","핏자국3.png")
+room1.locateObject(room1.blood2, 700,460)
+room1.blood2.setWidth(40)
+
+room1.uv = room1.createObject("uv","uv.png")
+room1.locateObject(room1.uv, 810,590)
+room1.uv.setWidth(70)
+
+
+//---함수---//
+
+/*
+function Bloodstain(room,name,image) {
+  this.room = room
+  this.name = name
+  this.image = image
+}
+*/
+
+room1.uv.onClick = function() {
+  room1.uv.pick()
+  room1.blood2.setSprite("핏자국3투.png")
+}
+
+room1.victim.onClick = function()  {
+  if(game.getHandItem() == room1.uv){
+    room1.hint1.setSprite("핏자국.png")
+    console.log('됨1')
+  }
+}
+
+room1.blood2.onClick = function()  {
+  if(game.getHandItem() == room1.uv){
+    room1.blood2.setSprite("핏자국3.png")
+    console.log('됨2')
+  }
+}
 
 /*
 room1_door.door = room.createObject("door1", "문-오른쪽-닫힘.png") // 문 생성
