@@ -8,14 +8,13 @@ room1 = game.createRoom("room1", "subway1.jpg") // 방 생성
 
 room1.setRoomLight(0.7)
 
-room1.hint1 = room1.createObject("hint1","핏자국투.png")
-room1.locateObject(room1.hint1, 640,600)
-room1.hint1.setWidth(120)
-//room1.hint1.setSprite("핏자국투.png")
-
 room1.victim = room1.createObject("victim","쓰러진사람.png")
 room1.locateObject(room1.victim, 760,730)
 room1.victim.setWidth(600)
+
+room1.hint1 = room1.createObject("hint1","핏자국투.png")
+room1.locateObject(room1.hint1, 640,600)
+room1.hint1.setWidth(120)
 
 room1.blood1 = room1.createObject("blood1","핏자국2.png")
 room1.locateObject(room1.blood1, 700,330)
@@ -29,7 +28,13 @@ room1.uv = room1.createObject("uv","uv.png")
 room1.locateObject(room1.uv, 810,590)
 room1.uv.setWidth(70)
 
+room1.door = room1.createObject("door","방1문투.png")
+room1.locateObject(room1.door,640,320)
+room1.door.lock()
 
+room1.keypad = room1.createObject("keypad","키패드.png")
+room1.locateObject(room1.keypad,592.5,340)
+room1.keypad.setWidth(20)
 //---함수---//
 
 /*
@@ -45,20 +50,35 @@ room1.uv.onClick = function() {
   room1.blood2.setSprite("핏자국3투.png")
 }
 
-room1.victim.onClick = function()  {
+room1.hint1.onClick = function()  {
   if(game.getHandItem() == room1.uv){
     room1.hint1.setSprite("핏자국.png")
-    console.log('됨1')
   }
 }
 
 room1.blood2.onClick = function()  {
   if(game.getHandItem() == room1.uv){
     room1.blood2.setSprite("핏자국3.png")
-    console.log('됨2')
   }
 }
 
+room1.keypad.onClick = function() {
+  showKeypad("telephone","1463",function(){
+    room1.door.unlock()
+    printMessage("삐비빅")
+  })
+}
+
+room1.door.onClick = function() {
+  if(room1.door.isLocked()){
+    printMessage("문이 열리지 않는다.")
+  } else if(room1.door.isClosed()){
+    printMessage("문이 열렸다.")
+    room1.door.open()
+  } else{
+    //다음방으로 넘어가기
+  }
+}
 /*
 room1_door.door = room.createObject("door1", "문-오른쪽-닫힘.png") // 문 생성
 room.door.setWidth(136) // 크기 조절
