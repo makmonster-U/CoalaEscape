@@ -3,7 +3,7 @@
 //-----방생성-----/
 
 room1 = game.createRoom("room1", "subway1.jpg") // 방 생성
-
+room2 = game.createRoom("room2", "기관실1.jpg")
 //room1
 
 room1.setRoomLight(0.7)
@@ -29,7 +29,8 @@ room1.locateObject(room1.uv, 810,590)
 room1.uv.setWidth(70)
 
 room1.door = room1.createObject("door","방1문투.png")
-room1.locateObject(room1.door,640,320)
+room1.locateObject(room1.door,643,387.5)
+room1.door.setWidth(92)
 room1.door.lock()
 
 room1.keypad = room1.createObject("keypad","키패드.png")
@@ -74,6 +75,7 @@ room1.door.onClick = function() {
     printMessage("문이 열리지 않는다.")
   } else if(room1.door.isClosed()){
     printMessage("문이 열렸다.")
+    room1.door.setSprite("방1문.png")
     room1.door.open()
   } else{
     //다음방으로 넘어가기
@@ -101,5 +103,5 @@ room.door.onOpen = function() { // door 상태가 open으로 변경되면 실행
 
 
 //---------------------------게임 초기화-----------------------/-----------/
-game.start(room1) // 게임시작
+game.start(room2) // 게임시작
 printMessage("방탈출에 오신 것을 환영합니다!") // 환영 메시지 출력
